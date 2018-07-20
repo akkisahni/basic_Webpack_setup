@@ -1,10 +1,12 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
+
 module.exports = {
-	entry:{
-		main:'./app.js'
-	},
-	output:{
-		filename:'bundle.js'
-	},
+	entry: __dirname + "/app/app.js", // webpack entry point. Module to start building dependency graph
+  	output: {
+    	path: __dirname + '/dist', // Folder to store generated bundle
+    	filename: 'bundle.js',  // Name of generated bundle after build
+    	publicPath: '/' // public URL of the output directory when referenced in a browser
+  	},
 	watch: true,
 	module:{
 		rules:[
@@ -26,5 +28,15 @@ module.exports = {
 		      	} 
 			}
 		]
-	}
+	},
+	plugins: [  // Array of plugins to apply to build chunk
+      	new HtmlWebpackPlugin({
+          	template: __dirname + "/public/index.html",
+          	inject: 'body'
+      	})
+  	],
+  	devServer: {  // configuration for webpack-dev-server
+      	contentBase: './public',  //source of static assets
+      	port: 7700, // port to run dev-server
+  	} 
 };

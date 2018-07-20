@@ -1,16 +1,16 @@
-console.log("inside app.js");
-
+import '../styles/main.css';
 var sum = function(i,j){
-	console.log(i,j);
 	return i+j;
 };
 
-const updateSum = function(){
-	console.log("inside update sum")
-	const sumTotal = sum(parseInt(document.getElementById('num1').value) + parseInt(document.getElementById('num2').value));
+const updateSum = function(){	
+	const a = parseInt(document.getElementById('num1').value);
+	const b = parseInt(document.getElementById('num2').value); 	
+	const sumTotal = sum(a,b);	
 	console.log(sumTotal);
 	document.getElementById('sumResult').innerHtml = sumTotal
 }
+
 function wiring(){
 	console.log('wiring');
 	document.getElementById('sum').addEventListener('click', updateSum);
